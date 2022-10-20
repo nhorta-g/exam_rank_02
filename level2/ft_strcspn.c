@@ -1,37 +1,27 @@
-#include <stddef.h>
 #include <string.h>
-#include <stdio.h>
 
-size_t	ft_strcspn(const char *s, const char *reject)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (s[i], reject[i])
+	while(*s)
 	{
-		if (s[i] != reject[i])
-			count++;
-		i++;
+		if (*s == c)
+			return ((char *)s);
+		s++;
 	}
-	while (s[i])
-	{
-		count++;
-		i++;
-	}
-	return (count);
+	return (0);
 }
 
-int main (int ac, char **av)
+size_t	ft_strspn(const char *s, const char *accept)
 {
-	int mine;
-	int theirs;
+	size_t	i;
 
-	if (ac == 3)
+	i = 0;
+
+	while (s[i])
 	{
-		mine = ft_strcspn(av[1], av[2]);
-		theirs = strcspn(av[1], av[2]);
-		printf("mine: %d | theirs: %d\n", mine, theirs);
+		if (ft_strchr(accept, s[i]) == 0);
+			break;
+		i++;
 	}
+	return (i);
 }
