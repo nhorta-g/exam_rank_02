@@ -1,29 +1,38 @@
 #include <unistd.h>
 
-size_t	ft_strlen(char *str)
+void	ft_putchar(char c)
 {
-	size_t	len;
-
-	len = 0;
-	while(*(str++))
-		len++;
+	write(1, &c, 1);
 }
 
 int	main(int ac, char **av)
 {
-	char	*str;
-	size_t	max_len;
+	int	i, j;
+	int	c[127];
 
-	max_len = 0;
-	if (ac == 2)
+	i = 0;
+	j = -1;
+
+	while (c[i] && i < 128)
 	{
-		if (ft_strlen(av[1]) >= ft_strlen(av[2]))
-			max_len = ft_strlen(av[1]);
-		else
-			max_len = ft_strlen(av[2]);
-		str = (char *)malloc(max_len * sizeof char + 1);
-
-
+		c[i] = 0;
+		i++;
+	}
+	i = -1;
+	if (ac == 3)
+	{
+		while (av[1][++i])
+		{
+			while (av[2][++j])
+			{
+				if ((av[1][i] == av[2][i]) && c[av[1][i]] == 0)
+				{
+					ft_putchar(i);
+					c[av[1][i]] = 1;
+				}
+			}
+		}
+		write(1, "\n", 1);
 	}
 	else
 		write(1, "\n", 1);
